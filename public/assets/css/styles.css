@@ -1,0 +1,18 @@
+#tablero {
+    text-align: center;
+    padding: 15px;
+}
+
+#tablero canvas {
+    margin: 15px;
+    transition: width 0.5s, height 0.5s, transform 0.5s;
+}
+
+#tablero canvas p {
+    font-size: 6pt;
+}
+
+canvas:hover {
+    transform: scale(1.02);
+    background-color: slategrey;
+}
