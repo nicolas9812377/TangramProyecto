@@ -5,7 +5,7 @@ const Tangram = require('../model/tangram');
 
 const app = express();
 
-let coloresT = [{
+const coloresT = [{
         tipo: 'Primario',
         colores: ['#FFFF00', '#FF0000', '#0000FF']
     },
@@ -92,5 +92,5 @@ app.get('/colors', (req, res) => {
     res.send(treecolors);
 });
 
-
-module.exports = app;
+exports.coloresT;
+module.exports = { app, coloresT };

@@ -14,12 +14,14 @@ app.use(express.static(__dirname + './../public'));
 //hsb.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
+//requiere helper
+require('./helper/helper.js');
 
 //incluir rutas
 require('./routes/routes.js')(app);
 
 //incluir controller-tangram
-app.use(require('./controller/rutas-tangram'));
+app.use(require('./controller/rutas-tangram').app);
 
 
 
