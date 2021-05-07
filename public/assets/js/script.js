@@ -1,7 +1,10 @@
+let colorFiguras = [];
+let cant = 5; //cantidad de figuras
 $(document).ready(function() {
-    width = 400;
-    height = 400;
-    cant = 5;
+    width = 500;
+    height = 500;
+
+
     $.ajax({
         url: '/tangram',
         data: {},
@@ -9,47 +12,50 @@ $(document).ready(function() {
         success: function(msg) {
             msg.tangram.forEach((element, index) => {
                 figuras = [];
-                $('#tablero').append(`<canvas id="canvas${index}" width="${width}" height="${height}" style="border: 1px solid rgb(0, 0, 0);"></canvas>`);
+
+                let codigohtml = `<h3 id="tangramname">${element['nombre']}</h3>`;
+                codigohtml += `<svg width="${width}" height="${height}"  style="border: 1px solid rgb(0, 0, 0);">`;
 
                 for (let i = 1; i <= cant; i++) {
                     figuras.push(element[`figuras${i}`].split(';'));
+                    colorFiguras.push({
+                        figuras: `figuras${i-1}`,
+                        color: ''
+                    });
                 }
+                console.log(colorFiguras);
 
-                var canvas = document.getElementById(`canvas${index}`);
-                if (canvas.getContext) {
-                    var ctx = canvas.getContext('2d');
-                    for (let j = 0; j < cant; j++) {
-                        if (figuras[j].length == 3) {
-                            punto1 = figuras[j][0].split(',');
-                            punto2 = figuras[j][1].split(',');
-                            punto3 = figuras[j][2].split(',');
-
-                            ctx.beginPath();
-                            ctx.moveTo(parseInt(punto1[0]), parseInt(punto1[1]));
-                            ctx.lineTo(parseInt(punto2[0]), parseInt(punto2[1]));
-                            ctx.lineTo(parseInt(punto3[0]), parseInt(punto3[1]));
-                            ctx.closePath();
-                            ctx.stroke();
-                        } else if (figuras[j].length == 4) {
-                            punto1 = figuras[j][0].split(',');
-                            punto2 = figuras[j][1].split(',');
-                            punto3 = figuras[j][2].split(',');
-                            w = Math.sqrt(Math.pow((parseInt(punto2[0]) - parseInt(punto1[0])), 2) + Math.pow((parseInt(punto2[1]) - parseInt(punto1[1])), 2))
-                            h = Math.sqrt(Math.pow((parseInt(punto3[0]) - parseInt(punto1[0])), 2) + Math.pow((parseInt(punto3[1]) - parseInt(punto1[1])), 2))
-                            console.log("Wih: " + w + " H: " + h);
-
-                            ctx.beginPath();
-                            ctx.rect(parseInt(punto1[0]), parseInt(punto1[1]), parseInt(w), parseInt(h));
-                            ctx.stroke();
-                            ctx.closePath();
-
-                        }
+                for (let j = 0; j < cant; j++) {
+                    if (figuras[j].length == 3) {
+                        codigohtml += `<polygon class="fig" id="figuras${j}" points="${figuras[j][0]} ${figuras[j][1]} ${figuras[j][2]}" stroke="#000" fill="#fff"/> `;
+                    } else if (figuras[j].length == 4) {
+                        punto1 = figuras[j][0].split(',');
+                        punto2 = figuras[j][1].split(',');
+                        punto3 = figuras[j][2].split(',');
+                        w = Math.sqrt(Math.pow((parseInt(punto2[0]) - parseInt(punto1[0])), 2) + Math.pow((parseInt(punto2[1]) - parseInt(punto1[1])), 2))
+                        h = Math.sqrt(Math.pow((parseInt(punto3[0]) - parseInt(punto1[0])), 2) + Math.pow((parseInt(punto3[1]) - parseInt(punto1[1])), 2))
+                        console.log("Wih: " + w + " H: " + h);
+                        codigohtml += `<rect class="fig" id="figuras${j}" x="${punto1[0]}" y="${punto1[1]}" width="${w}" height="${h}" stroke="#000" fill="#fff"/>`;
                     }
                 }
-                canvas.addEventListener('click', canvasClicked, false);
-
+                $('#tablero').html(codigohtml);
             });
-            //console.log(msg);
+            $('.fig').on('click', function() {
+                if (colorchoose == undefined) {
+                    alert("Eliga un color primero");
+                } else {
+                    let temp = $(this).attr('id');
+                    console.log(" id:  " + temp + " colorelegido: " + colorchoose);
+                    $(this).attr('fill', colorchoose);
+                    colorFiguras.map(function(x) {
+                        if (x.figuras == temp) {
+                            x.color = rgb2hex(colorchoose);
+                            return x;
+                        }
+                    });
+                    //console.log(colorFiguras);
+                }
+            });
         },
         error: function(err) {
             console.log(err);
@@ -57,8 +63,4 @@ $(document).ready(function() {
     });
 });
 
-function canvasClicked(e) {
-    //console.log("name: " + name);
-    console.log("Clicked x: " + e.x + " y: " + e.y + " e:  " + e.target.id);
-    location.href = "/?id=" + e.target.id;
-}
+let rgb2hex = c => '' + c.match(/\d+/g).map(x => (+x).toString(16).padStart(2, 0)).join ``;

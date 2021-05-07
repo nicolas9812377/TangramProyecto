@@ -5,12 +5,26 @@ const Tangram = require('../model/tangram');
 
 const app = express();
 
+let coloresT = [{
+        tipo: 'Primario',
+        colores: ['#FFFF00', '#FF0000', '#0000FF']
+    },
+    {
+        tipo: 'Secundario',
+        colores: ['#FFA500', '#EE82EE', '#008000']
+    },
+    {
+        tipo: 'Terciario',
+        colores: ['#FBBA00', '#FF4000', '#922B3E', '#4C2882', '#009C8C', '#C6CE00']
+    }
+];
+
 app.get('/tangram', (req, res) => {
 
     let desde = req.query.desde || 0;
     desde = Number(desde)
 
-    let limite = req.query.limite || 3;
+    let limite = req.query.limite || 1;
     limite = Number(limite)
 
     Tangram.find({}, 'nombre figuras1 figuras2 figuras3 figuras4 figuras5')
@@ -64,6 +78,19 @@ app.post('/tangram', (req, res) => {
 });
 
 
+app.get('/colors', (req, res) => {
+    let n = 3;
+    let treecolors = coloresT.map(function(x) {
+        let temporal = [x.tipo];
+        while (temporal.length != n + 1) {
+            var rand = x.colores[~~(Math.random() * x.colores.length)];
+            if (temporal.indexOf(rand) == -1)
+                temporal.push(rand)
+        }
+        return temporal;
+    });
+    res.send(treecolors);
+});
 
 
 module.exports = app;

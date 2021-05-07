@@ -3,16 +3,47 @@
     padding: 15px;
 }
 
-#tablero canvas {
+#tablero svg {
     margin: 15px;
     transition: width 0.5s, height 0.5s, transform 0.5s;
 }
 
-#tablero canvas p {
+#tablero p {
     font-size: 6pt;
 }
 
-canvas:hover {
-    transform: scale(1.02);
-    background-color: slategrey;
+.fig:hover {
+    /*transform: scale(2);*/
+    cursor: pointer;
+}
+
+.paletaColor {
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+    border-radius: 30px;
+}
+
+.paletaColor:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.democolor {
+    border-radius: 16px;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+#paleta {
+    margin-top: 30px;
+}
+
+#cardcolor:hover {
+    transform: scale(1.1);
+    /*background-color: slategrey;*/
 }
