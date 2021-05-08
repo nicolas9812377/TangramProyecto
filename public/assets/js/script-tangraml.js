@@ -1,5 +1,6 @@
 let colorFiguras = [];
 let cant = 5; //cantidad de figuras
+let colorchoose;
 $(document).ready(function() {
     width = 500;
     height = 500;
@@ -13,7 +14,7 @@ $(document).ready(function() {
             msg.tangram.forEach((element, index) => {
                 figuras = [];
 
-                let codigohtml = `<h3 id="tangramname">${element['nombre']}</h3>`;
+                let codigohtml = `<h3 class="display-5" id="tangramname">${element['nombre']}</h3>`;
                 codigohtml += `<svg width="${width}" height="${height}"  style="border: 1px solid rgb(0, 0, 0);">`;
 
                 for (let i = 1; i <= cant; i++) {
@@ -53,7 +54,7 @@ $(document).ready(function() {
                             return x;
                         }
                     });
-                    //console.log(colorFiguras);
+                    console.log(colorFiguras);
                 }
             });
         },
@@ -62,4 +63,18 @@ $(document).ready(function() {
         }
     });
 
+    $('.paletaColores').on('click', function() {
+        colorchoose = $(this).css("background-color");
+    });
+
+    $('#btnEnviar').on('click', function() {
+        let temp = colorFiguras.filter(x => x.color != '');
+        if (temp.length != cant)
+            alert("Asegurese de pintar todos");
+        else
+        //enviar al servidor pendiente login
+            alert("Enviando al servidor login------");
+    });
 });
+
+let rgb2hex = c => '' + c.match(/\d+/g).map(x => (+x).toString(16).padStart(2, 0)).join ``;

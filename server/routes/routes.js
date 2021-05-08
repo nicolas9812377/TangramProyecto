@@ -1,12 +1,12 @@
 module.exports = (app) => {
     app.get('/', (req, res) => {
-        res.render('index');
+        res.render('index', { titulo: 'Inicio' });
     });
     app.get('/login', (req, res) => {
-        res.render('login');
+        res.render('login', { titulo: 'Iniciar Sesion' });
     });
     app.get('/register', (req, res) => {
-        res.render('register');
+        res.render('register', { titulo: 'Registro' });
     });
     app.get('/tangram-r', (req, res) => {
         let colora = req.query.colora || undefined;
@@ -15,13 +15,13 @@ module.exports = (app) => {
         let nombre = req.query.nombre || undefined;
         if (colora === undefined || colorb === undefined || colorc === undefined || nombre === undefined)
             return res.redirect('/tangram-colors')
-        res.render('tangram-r', { colora: "#" + colora, colorb: "#" + colorb, colorc: "#" + colorc, nombre });
+        res.render('tangram-r', { colora: "#" + colora, colorb: "#" + colorb, colorc: "#" + colorc, nombre, titulo: 'Tangram R' });
     });
     app.get('/tangram-l', (req, res) => {
-        let { coloresT } = require('../controller/rutas-tangram');
-        res.render('tangram-l', { coloresT });
+        let { coloresT } = require('../controller/controller-colors');
+        res.render('tangram-l', { coloresT, titulo: 'Tangram L' });
     });
     app.get('/tangram-colors', (req, res) => {
-        res.render('tangram-colors');
+        res.render('tangram-colors', { titulo: 'Tangram Colors' });
     });
 }

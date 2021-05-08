@@ -1,10 +1,33 @@
 let colorFiguras = [];
 let cant = 5; //cantidad de figuras
+let width = 400;
+let height = 400;
+let colorchoose;
 $(document).ready(function() {
-    width = 500;
-    height = 500;
+    newTangram();
+    $('#btnNuevo').on('click', () => {
+        colorFiguras = [];
+        $('#tablero').html('');
+        newTangram();
+    });
 
+    $('.paletaColor').on('click', function() {
+        colorchoose = $(this).css("background-color");
+        //$(this).css("transform", "scale(1.1)");
+        //$('#tablero').attr('disabled', false);
+    });
 
+    $('#btnEnviar').on('click', function() {
+        let temp = colorFiguras.filter(x => x.color != '');
+        if (temp.length != cant)
+            alert("Asegurese de pintar todos");
+        else
+        //enviar al servidor pendiente
+            alert("Enviando al servidor");
+    });
+});
+
+function newTangram() {
     $.ajax({
         url: '/tangram',
         data: {},
@@ -13,7 +36,7 @@ $(document).ready(function() {
             msg.tangram.forEach((element, index) => {
                 figuras = [];
 
-                let codigohtml = `<h3 id="tangramname">${element['nombre']}</h3>`;
+                let codigohtml = `<h3 class="display-5" id="tangramname">${element['nombre']}</h3>`;
                 codigohtml += `<svg width="${width}" height="${height}"  style="border: 1px solid rgb(0, 0, 0);">`;
 
                 for (let i = 1; i <= cant; i++) {
@@ -53,7 +76,7 @@ $(document).ready(function() {
                             return x;
                         }
                     });
-                    //console.log(colorFiguras);
+                    console.log(colorFiguras);
                 }
             });
         },
@@ -61,6 +84,6 @@ $(document).ready(function() {
             console.log(err);
         }
     });
-});
+}
 
 let rgb2hex = c => '' + c.match(/\d+/g).map(x => (+x).toString(16).padStart(2, 0)).join ``;

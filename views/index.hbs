@@ -1,13 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
-</head>
-<body>
-    <a href="/register">Registro</a>
-    <a href="/login">Iniciar Session</a>
-</body>
-</html>
+{{> header}}
+    {{> navbar}}
+        <div class="jumbotron">
+            <div class="container">
+                <h2 class="display-3">Bienvenido :)</h2>
+                <p class="lead">Nuestra doble autenticacion esta basada en tangram, pruebalo.</p>
+                <hr class="my-4">
+                <p>De acuerdo con John Medina, solamente el 10% de lo que leemos en un texto acabará siendo recordado pasados unos 3 días. En cambio, si esa información es presentada en forma de imagen o, incluso, con un texto, pero ejemplificado mediante una fotografía, el porcentaje de recuerdo sube hasta el 65%.</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="/register" role="button">Registro</a>
+                    <a class="btn btn-primary btn-lg" href="/login" role="button">Iniciar Session</a>
+                </p>
+            </div>
+        </div>
+        <div class="container"> 
+            <div style="margin-top: 10%;"></div>
+        </div>
+{{> footer}}

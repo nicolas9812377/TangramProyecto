@@ -1,0 +1,24 @@
+<nav class="navbar navbar-main navbar-expand-lg navbar-dark bg-dark position-sticky top-0 shadow py-2 ">
+        <a class="navbar-brand" href="/" style="font-size: 1.1rem;">
+            <img src="https://i.pinimg.com/originals/df/bf/13/dfbf13bf919b1e039f46303a4594a157.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Tangram
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse w-100 " id="navbarNav">
+            <ul class="nav navbar-nav px-2 ml-auto" >
+                <li class="nav-item {{{ setActive 'Inicio' titulo}}} ">
+                    <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item px-2 {{{ setActive 'Registro' titulo}}}">
+                    <a class="nav-link" href="/register">Registro</a>
+                </li>
+                <li class="nav-item px-2 {{{ setActive 'Iniciar Sesion' titulo}}}">
+                    <a class="nav-link" href="/login">Iniciar Sesion</a>
+                </li>
+            </ul>
+        </div> 
+    </nav>

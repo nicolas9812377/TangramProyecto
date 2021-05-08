@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(express.static(__dirname + './../public'));
-//hsb.registerPartials(__dirname + '/views/partials');
+hsb.registerPartials(__dirname + './../views/partials');
 app.set('view engine', 'hbs');
 
 //requiere helper
@@ -21,7 +21,7 @@ require('./helper/helper.js');
 require('./routes/routes.js')(app);
 
 //incluir controller-tangram
-app.use(require('./controller/rutas-tangram').app);
+app.use(require('./routes/rutas-tangram'));
 
 
 
