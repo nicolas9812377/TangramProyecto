@@ -2,6 +2,7 @@ require('./config/config')
 const express = require('express');
 const app = express();
 const hsb = require('hbs');
+const path = require('path');
 const mongoose = require('mongoose');
 
 const bodyParser = require('body-parser');
@@ -10,8 +11,8 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(express.static(__dirname + './../public'));
-hsb.registerPartials(__dirname + './../views/partials');
+app.use(express.static(path.join(__dirname, '../public')));
+hsb.registerPartials( path.join(__dirname, '../views/partials') );
 app.set('view engine', 'hbs');
 
 //requiere helper
