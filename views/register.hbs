@@ -1,55 +1,146 @@
 {{> header}}
     {{> navbar}}
-    <div class="container bg-secondary shadow border-1 col-lg-4 mt-6 p-5">
-      <div class="text-center text-muted mb-4">
-        <img src="https://i.pinimg.com/originals/df/bf/13/dfbf13bf919b1e039f46303a4594a157.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        <h3 class="display-4">Registrate con tu informacion</h3>
-      </div>
-      <form action="" role="form">         
-        <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-user"></i></span>
-                </div>
-                <input type="text" placeholder="Nombre" class="form-control" id = "name" name = "name">
-              </div> 
-        </div>
 
-        <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-envelope"></i></span>
-                </div>
-              <input type="text" placeholder="Email" class="form-control" id = "email" name = "email"><br>
-              </div> 
-        </div>
-          
-        <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-user"></i></span>
-                </div>
-                <input type="text" placeholder="Apellido" class="form-control" id = "lastname" name = "lastname">
-              </div> 
-        </div>
- 
-        <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fa fa-lock"></i></span>
-                </div>
-                <input type="text" placeholder="Contraseña" class="form-control" id = "password" name = "password">
-              </div> 
-        </div>
+    <div class="container mt-5">
+      <div class="progress" style="height: 30px;">
+        <div class="progress-bar bg-dark active" style="height: 30px;" role="progressbar" aria-valuemin="0" aria-valuemax="100" ></div>
+      </div>
+      <div class="alert alert-danger d-none" role="alert" id="msg"></div>
+      <form action="" novalidate id="register_form" class="bg-secondary shadow border-1">
+          <!-- 1. Paso -->
+          <fieldset>
+            <div class="container text-center mt-2">
+                <h2 class="display-3"><img src="https://i.pinimg.com/originals/df/bf/13/dfbf13bf919b1e039f46303a4594a157.png" width="35" height="35" class="d-inline-block align-middle" alt="">
+                Registrate
+                </h2>
+                <p>Rellene los campos con tu informacion</p>
+                <hr style="width:85%">
+            </div>
+            <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5 ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                      <input type="text" placeholder="Nombre" required class="form-control" id = "name" name = "name">
+                    </div> 
+              </div>
+
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user"></i></span>
+                      </div>
+                      <input type="text" placeholder="Apellido" required class="form-control" id = "lastname" name = "lastname">
+                    </div> 
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5 ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                      </div>
+                    <input type="email" placeholder="Email" required class="form-control" id = "email" name = "email"><br>
+                    </div> 
+              </div>
+                
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                      </div>
+                      <input type="password" placeholder="Contraseña" required class="form-control" id = "password" name = "password">
+                    </div> 
+              </div>
+            </div>
             
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary mt-4">
-                <span class="btn-inner--icon"><i class="fa fa-paper-plane"></i></span>
-                <span class="btn-inner--text">Registrarse</span>
-          </button>
-        </div>
+            <!--<input type="button" class="next-form btn btn-info mt-4 mb-5" style="margin-left: 8%;" value="Siguiente" />-->
+            <button type="button" class="next-form btn btn-info mt-4 mb-5" style="margin-left: 8%;">
+              <span class="btn-inner--icon"><i class="fa fa-chevron-circle-right"></i></span>
+              <span class="btn-inner--text">Siguiente</span>
+            </button>
+            
+          </fieldset>
+          <!-- 2. Paso -->
+          <fieldset>
+            <div class="container text-center mt-2">
+                  <h2 class="display-3"> Colores</h2>
+                  <p>Elige que tipo de colores deseas colorear tu tangram</p>
+                  <hr style="width:85%">
+            </div>
+            <div class="alert alert-primary d-none" style="width: 83%; margin-left: 8%;" role="alert"></div>
+            <div class="card-deck mt-3" style="margin-left: 8%;">
+                  {{{ getPaletas}}}
+            </div>
+            
+
+             <!--<input type="button" name="previous" class="previous-form btn btn-default mt-5 mb-5" style="margin-left: 9%;" value="Atrás" />
+                  <input type="button" name="next" class="next-form btn btn-info mt-5 mb-5" disabled id="cs"  value="Siguiente" />-->
+            <button type="button" name="previous" class="previous-form btn btn-default mt-5 mb-5" style="margin-left: 9%;" >
+              <span class="btn-inner--icon"><i class="fa fa-chevron-circle-left"></i></span>
+              <span class="btn-inner--text">Atrás</span>
+            </button>
+            
+            <button type="button" name="next" class="next-form btn btn-info mt-5 mb-5" disabled id="cs">
+              <span class="btn-inner--icon"><i class="fa fa-chevron-circle-right"></i></span>
+              <span class="btn-inner--text">Siguiente</span>
+            </button>
+          </fieldset>
+          <!-- 3. Paso -->
+          <fieldset>
+            <div class="text-center mt-2">
+              <h2 class="display-3">Colorea tu Tangram</h2>
+              <p>Procede a escoger los colores de tu paleta y colorea el tangram a tu gusto.</p>
+              <hr style="width:85%">
+            </div>
+              
+            <div class="row">
+              <div id="tablero" class="col-9">
+                      
+              </div>
+          
+              <div class="col text-center mt-3">
+                <div class="card mb-3 shadow border-0 ml-4" style="max-width: 10rem;">
+                          <div class="card-header bg-default" style="color: white;">Colores</div>
+                          <div class="card-body" id="cc">
+                              
+                          </div>
+                </div>
+                <hr style="width: 80%;">
+                <small>Si deseas un nuevo diseño presiona <strong>Nuevo.</strong></small><br>
+                <button type="button" class="btn btn-warning" id="btnNuevo">
+                          <span class="btn-inner--icon"><i class="fa fa-random"></i></span>
+                          <span class="btn-inner--text">Nuevo</span>
+                </button>       
+              </div>
+
+            </div>
+            
+            <!--<input type="button" name="previous" class="previous-form btn btn-default" value="Atrás" />
+                <input type="submit" name="submit" class="submit btn btn-success" value="Enviar" />-->
+            <button type="button" class="previous-form btn btn-default mt-5 mb-5" style="margin-left: 9%;">
+              <span class="btn-inner--icon"><i class="fa fa-chevron-circle-left"></i></span>
+              <span class="btn-inner--text">Atrás</span>
+            </button>
+            <button type="button" class="submit btn btn-success" id="btnEnviar">
+              <span class="btn-inner--icon"><i class="fa fa-paper-plane"></i></span>
+              <span class="btn-inner--text">Enviar</span>
+            </button>
+            
+          </fieldset>
       </form>
     </div>
+
+    <style type="text/css">
+      #register_form fieldset:not(:first-of-type) {
+        display: none;
+      }
+    </style>
+
+    <script src="assets/js/script.js"></script>
+    
 
     <!-- Repetir Contraseña<div class="form-group mb-3"><div class="input-group input-group-alternative">  <div class="input-group-prepend"><span class="input-group-text"><i class="fa fa-lock"></i></span></div><input type="text" placeholder="Repetir Contraseña" class="form-control" id = "Rpassword" name = "Rpassword"></div></div>-->
 {{> footer}}

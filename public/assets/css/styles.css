@@ -42,10 +42,6 @@
     float: left;
 }
 
-#paleta {
-    margin-top: 30px;
-}
-
 #cardcolor:hover {
     transform: scale(1.1);
     cursor: pointer;

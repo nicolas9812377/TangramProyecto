@@ -4,6 +4,37 @@ let width = 400;
 let height = 400;
 let colorchoose;
 $(document).ready(function() {
+    var form_count = 1,
+        previous_form, next_form, total_forms;
+    total_forms = $("fieldset").length;
+
+    $(".next-form").click(function() {
+        previous_form = $(this).parent();
+        next_form = $(this).parent().next();
+        next_form.show();
+        previous_form.hide();
+        setProgressBarValue(++form_count);
+    });
+    $(".previous-form").click(function() {
+        previous_form = $(this).parent();
+        next_form = $(this).parent().prev();
+        next_form.show();
+        previous_form.hide();
+        setProgressBarValue(--form_count);
+        colorFiguras = [];
+        $('#tablero').html('');
+        newTangram();
+        colorchoose = undefined;
+    });
+    setProgressBarValue(form_count);
+
+    function setProgressBarValue(value) {
+        var percent = parseFloat(100 / total_forms) * value;
+        percent = percent.toFixed();
+        $(".progress-bar")
+            .css("width", percent + "%")
+            .html(percent + "%");
+    }
     newTangram();
     $('#btnNuevo').on('click', () => {
         colorFiguras = [];
@@ -11,21 +42,67 @@ $(document).ready(function() {
         newTangram();
     });
 
-    $('.paletaColor').on('click', function() {
-        colorchoose = $(this).css("background-color");
-        //$(this).css("transform", "scale(1.1)");
-        //$('#tablero').attr('disabled', false);
-    });
+    // Validacion
+    $("#btnEnviar").click(function(event) {
+        var error_message = '';
+        if (!$("#email").val()) {
+            error_message += "Por favor escribe email";
+        }
+        if (!$("#password").val()) {
+            error_message += "<br>Por favor escribe contraseña";
+        }
+        if (!$("#name").val()) {
+            error_message += "<br>Por favor escribe nombre";
+        }
+        if (!$("#lastname").val()) {
+            error_message += "<br>Por favor escribe apellido";
+        }
 
-    $('#btnEnviar').on('click', function() {
         let temp = colorFiguras.filter(x => x.color != '');
         if (temp.length != cant)
-            alert("Asegurese de pintar todos");
-        else
-        //enviar al servidor pendiente
-            alert("Enviando al servidor");
+            error_message += "<br>Asegurese de pintar todos";
+
+
+        // Display error if any else submit form
+        if (error_message) {
+            $('.alert-danger').removeClass('d-none').html(error_message);
+            location.href = '/register#msg';
+            return;
+        } else {
+            var resp = {
+                name: $('#name').val(),
+                lastname: $('#lastname').val(),
+                email: $('#email').val(),
+                password: $('#password').val(),
+                tangramname: $('#tangramname').text(),
+                colorFiguras
+            };
+            console.log("Enviando al servidor: ");
+            console.log(resp);
+            return;
+        }
     });
+
 });
+
+
+
+function cardClicked(n, ca, cb, cc) {
+    let colora = ca;
+    let colorb = cb;
+    let colorc = cc;
+    let nombre = n;
+    $('#cs').attr('disabled', false);
+    $('.alert-primary').removeClass('d-none').html(`Color Elegido: ${nombre}`);
+    $('#cc').html(`<h5 class="card-title">${nombre}</h5>
+    <div class="paletaColor" style="background-color: ${colora}"></div>
+    <div class="paletaColor" style="background-color: ${colorb}"></div>
+    <div class="paletaColor" style="background-color: ${colorc}"></div>`);
+    //console.log(colora + " " + colorb + " " + colorc);
+    $('.paletaColor').click(function() {
+        colorchoose = $(this).css("background-color");
+    });
+}
 
 function newTangram() {
     $.ajax({
