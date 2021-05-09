@@ -1,0 +1,8 @@
+1. Saber a donde enviar los colores elegidos en tangram registro
+2. Tangram login dejarlo con ajax, enviar parametro correo, y devuelva 1 tangram correcto y 2 incorrectos adicionales
+3. Tangraml.hbs agregar parte de tangram pequeños (Preguntas bien esto)
+4. Frontend casi terminado
+
+
+pagina de css
+https://demos.creative-tim.com/argon-design-system/index.html?_ga=2.12514995.609895414.1620437004-819444744.1620437004
