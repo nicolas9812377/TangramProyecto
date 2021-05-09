@@ -9,15 +9,10 @@ const app = express();
 
 app.get('/tangram', (req, res) => {
 
-    let desde = req.query.desde || 0;
-    desde = Number(desde)
 
-    let limite = req.query.limite || 1;
-    limite = Number(limite)
 
-    Tangram.find({}, 'nombre figuras1 figuras2 figuras3 figuras4 figuras5')
-        .skip(desde)
-        .limit(limite)
+    Tangram.aggregate([{ $sample: { size: 1 } }])
+  
         .exec((err, tangram) => {
 
             if (err) {
