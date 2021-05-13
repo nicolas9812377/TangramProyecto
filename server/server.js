@@ -4,6 +4,7 @@ const app = express();
 const hsb = require('hbs');
 const path = require('path');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 const bodyParser = require('body-parser');
 
@@ -12,8 +13,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, '../public')));
-hsb.registerPartials( path.join(__dirname, '../views/partials') );
+hsb.registerPartials(path.join(__dirname, '../views/partials'));
 app.set('view engine', 'hbs');
+
+//Sesiones
+app.use(session({
+    secret: process.env.SEED,
+    resave: false,
+    saveUninitialized: true
+}));
 
 //requiere helper
 require('./helper/helper.js');
@@ -22,9 +30,10 @@ require('./helper/helper.js');
 require('./routes/routes.js')(app);
 
 //incluir controller-tangram
-app.use(require('./routes/rutas-tangram'));
+app.use(require('./routes/routes-tangram'));
 
-
+//incluir user
+app.use(require('./routes/routes-user'));
 
 // Conectar con MongoDB
 mongoose.connect(process.env.URLDB, { useCreateIndex: true, useNewUrlParser: true, useUnifiedTopology: true },

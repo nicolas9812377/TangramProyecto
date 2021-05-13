@@ -3,20 +3,22 @@
     
     <div class="container mt-4">
         <div class="text-center mt-5 mb-2">
+            {{{ ifm msg tipo}}}
             <h2 class="display-4">Tangram Autenticación</h2>
             <p>Colorea el tangram de acuerdo a los colores elegidos.</p>
             <hr>
         </div>
         <div class="row">
-            <div id="tablerol" >
-
-            </div>
+            <div id="muestra"></div> 
             {{{ getColor coloresT }}}
-        </div>
+            <div id="tablerol" style="margin-top: -450px; margin-left: 10%;" ></div>
+                       
+        </div>        
+
         <div class="container text-center">
             <hr>
             <small>Presiona <strong>Enviar</strong> si ya acabaste.</small><br>
-            <button type="button" class="btn btn-primary mt-3" id="btnEnviar">
+            <button type="submit" class="btn btn-primary mt-3" id="btnEnviar">
                 <span class="btn-inner--icon"><i class="fa fa-paper-plane"></i></span>
                 <span class="btn-inner--text">Enviar</span>
             </button>

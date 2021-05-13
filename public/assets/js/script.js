@@ -69,16 +69,33 @@ $(document).ready(function() {
             location.href = '/register#msg';
             return;
         } else {
-            var resp = {
-                name: $('#name').val(),
-                lastname: $('#lastname').val(),
-                email: $('#email').val(),
-                password: $('#password').val(),
-                tangramname: $('#tangramname').text(),
-                colorFiguras
-            };
+
             console.log("Enviando al servidor: ");
-            console.log(resp);
+            $.ajax({
+                url: '/Inser-user',
+                data: {
+                    'name': $('#name').val(),
+                    'lastname': $('#lastname').val(),
+                    'email': $('#email').val(),
+                    'password': $('#password').val(),
+                    'tangramname': $('#tangramname').text(),
+                    'colorFiguras': JSON.stringify(colorFiguras)
+                },
+                type: 'POST',
+                success: function(msg) {
+                    if (msg.ok)
+                        location.href = `/?msg=${msg.msg}&tipo=success`;
+                    else {
+                        $('.alert-danger').removeClass('d-none').html('Usuario ya registrado');
+                        location.href = '/register#msg';
+                    }
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+
             return;
         }
     });

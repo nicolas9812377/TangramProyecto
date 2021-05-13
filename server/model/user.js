@@ -4,16 +4,15 @@ let uniqueValidator = require('mongoose-unique-validator');
 let Schema = mongoose.Schema;
 
 let userSchema = new Schema({
-    nombre: {
+    name: {
         type: String,
         required: [true, 'El nombre del Usuario es requerido'],
-        unique: true
     },
-    apellido: { type: String },
-    correo: { type: String },
-    contrasena: { type: String },
-    id_tagram: { type: String,required:true ,unique:true},
-    colores: { type: String,required:true }
+    lastname: { type: String },
+    email: { type: String, unique: true },
+    password: { type: String },
+    tangramname: { type: String, required: true },
+    colors: { type: Array, required: true }
 });
 
 userSchema.plugin(uniqueValidator, { message: '{PATH} debe ser único' });

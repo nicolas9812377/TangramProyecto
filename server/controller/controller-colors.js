@@ -26,8 +26,16 @@ let get3Colors = () => {
     return treecolors;
 };
 
+let equalsColors = (colorA, colorB) => {
+    for (let index = 0; index < colorA.length; index++) {
+        if (colorA[index] != colorB[index])
+            return false;
+    }
+    return true;
+};
 
 module.exports = {
     get3Colors,
-    coloresT
+    coloresT,
+    equalsColors
 };

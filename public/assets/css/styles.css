@@ -1,7 +1,7 @@
 #tablero,
 #tablerol {
     text-align: center;
-    padding: 15px;
+    padding: 5px;
 }
 
 #tablero svg {
@@ -50,4 +50,19 @@
 
 .nav-link {
     font-size: 0.95rem !important;
+}
+
+.ti {
+    float: left;
+    padding: 20px;
+    margin-left: 50px;
+}
+
+.ti:hover {
+    transform: scale(1.1);
+    background-color: rgb(245, 243, 243);
+}
+
+#muestra {
+    width: 60%;
 }
