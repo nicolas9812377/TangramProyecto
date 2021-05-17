@@ -1,6 +1,5 @@
 const express = require('express');
 const _ = require('underscore');
-const usuario = require('../../../../../../ProyectoQuick/Backend/server/models/usuario');
 const { equalsColors } = require('../controller/controller-colors');
 const Usuario = require('../model/user');
 
@@ -15,10 +14,22 @@ app.post('/Inser-user', (req, res) => {
     let user = new Usuario({
         name: body.name,
         lastname: body.lastname,
+        username: body.username,
+        idcard: body.idcard,
         email: body.email,
         password: body.password,
         tangramname: body.tangramname,
-        colors: JSON.parse(body.colorFiguras)
+        colors: JSON.parse(body.colorFiguras),
+        telephone: body.telephone,
+        phone: body.phone,
+        birthday: body.birthday,
+        direction: body.direction,
+        country: body.country,
+        province: body.province,
+        city: body.city,
+        civilstatus: body.civilstatus,
+        gender: body.gender,
+        ruleid: body.ruleid
     });
 
     user.save((err, userBD) => {
@@ -42,15 +53,15 @@ app.post('/login-tangram', (req, res) => {
         return x.color
     });;
     Usuario.findOne({ email: req.session.usuario.email }, (err, usuarioBD) => {
-        if (usuarioBD.tangramname == body.tangramname) {
-            let bdcolors = JSON.parse(JSON.stringify(usuarioBD.colors)).map(function(x) {
-                return x.color
-            });;
-            if (equalsColors(bdcolors, ucolors))
-                return res.status(200).json({
-                    ok: true
-                });
-        }
+        //if (usuarioBD.tangramname == body.tangramname) {
+        let bdcolors = JSON.parse(JSON.stringify(usuarioBD.colors)).map(function(x) {
+            return x.color
+        });;
+        if (equalsColors(bdcolors, ucolors))
+            return res.status(200).json({
+                ok: true
+            });
+        //}
 
         return res.status(200).json({
             ok: false,

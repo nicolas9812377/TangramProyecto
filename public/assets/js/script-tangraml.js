@@ -4,10 +4,8 @@ let colorchoose;
 let vectangrams = [];
 let width = 400;
 let height = 400;
+let intentos = 3;
 $(document).ready(function() {
-
-
-
 
     $.ajax({
         url: '/tangram-id',
@@ -19,7 +17,7 @@ $(document).ready(function() {
             let codigohtml = "";
             vectangrams.forEach(element => {
                 figuras = [];
-                codigohtml += '<div class ="ti shadow border-0">';
+                codigohtml += `<div class ="ti shadow border-0" id="${element['nombre']}">`;
                 codigohtml += `<h3 class="heading mb-0" >${element['nombre']}</h3>`;
                 codigohtml += `<svg width="80" height="80"  style="border: 1px solid rgb(0, 0, 0);">`;
 
@@ -86,8 +84,15 @@ $(document).ready(function() {
                     console.log(msg);
                     if (msg.ok)
                         location.href = `/home`;
-                    else
-                        location.href = `/tangram-l?msg=${msg.msg}&tipo=danger`;
+                    else {
+                        intentos--;
+                        if (intentos == 0)
+                            location.href = `/logout?msg=Intentos%20Superados&tipo=danger`;
+                        $(`#${$('#tangramname').text()}`).hide();
+                        $('.alert-danger').removeClass('d-none').html(`${msg.msg}`);
+                        $('#tablerol').html('');
+                        location.href = `/tangram-l#msg`;
+                    }
                 },
                 error: function(error) {
                     console.log(error);
@@ -110,7 +115,7 @@ function tangram(element) {
     for (let i = 1; i <= cant; i++) {
         figuras.push(element[`figuras${i}`].split(';'));
         colorFiguras.push({
-            figuras: `figuras${i-1}`,
+            figuras: `figuras${i}`,
             color: ''
         });
     }
@@ -118,7 +123,8 @@ function tangram(element) {
 
     for (let j = 0; j < cant; j++) {
         if (figuras[j].length == 3) {
-            codigohtml += `<polygon class="fig" id="figuras${j}" points="${figuras[j][0]} ${figuras[j][1]} ${figuras[j][2]}" stroke="#000" fill="#fff"/> `;
+            codigohtml += `<polygon class="fig" id="figuras${parseInt(j)+1}" points="${figuras[j][0]} ${figuras[j][1]} ${figuras[j][2]}" stroke="#000" fill="#fff"/>
+            <text x="${(parseInt(figuras[j][0].split(',')[0])+ parseInt(figuras[j][1].split(',')[0])+ parseInt(figuras[j][2].split(',')[0])) /3}" y="${(parseInt(figuras[j][0].split(',')[1])+ parseInt(figuras[j][1].split(',')[1])+ parseInt(figuras[j][2].split(',')[1])) /3}" style="font: bold 0.8em arial;" fill="#000" class="__web-inspector-hide-shortcut__">Fig: ${parseInt(j)+1}</text> `;
         } else if (figuras[j].length == 4) {
             punto1 = figuras[j][0].split(',');
             punto2 = figuras[j][1].split(',');
@@ -126,7 +132,8 @@ function tangram(element) {
             w = Math.sqrt(Math.pow((parseInt(punto2[0]) - parseInt(punto1[0])), 2) + Math.pow((parseInt(punto2[1]) - parseInt(punto1[1])), 2))
             h = Math.sqrt(Math.pow((parseInt(punto3[0]) - parseInt(punto1[0])), 2) + Math.pow((parseInt(punto3[1]) - parseInt(punto1[1])), 2))
             console.log("Wih: " + w + " H: " + h);
-            codigohtml += `<rect class="fig" id="figuras${j}" x="${punto1[0]}" y="${punto1[1]}" width="${w}" height="${h}" stroke="#000" fill="#fff"/>`;
+            codigohtml += `<rect class="fig" id="figuras${parseInt(j)+1}" x="${punto1[0]}" y="${punto1[1]}" width="${w}" height="${h}" stroke="#000" fill="#fff"/>
+            <text x="${(parseInt(punto1[0])+(parseInt(w)/2))}" y="${(parseInt(punto1[1])+(parseInt(h)/2))}" style="font: bold 0.8em arial; " fill="#000" class="__web-inspector-hide-shortcut__">Fig: ${parseInt(j)+1}</text>`;
         }
     }
     $('#tablerol').html(codigohtml);
@@ -138,6 +145,7 @@ function tangram(element) {
             let temp = $(this).attr('id');
             console.log(" id:  " + temp + " colorelegido: " + colorchoose);
             $(this).attr('fill', colorchoose);
+            $(this).next().attr('fill', 'white');
             colorFiguras.map(function(x) {
                 if (x.figuras == temp) {
                     x.color = rgb2hex(colorchoose);

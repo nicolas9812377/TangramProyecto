@@ -11,7 +11,7 @@ module.exports = (app) => {
     app.get('/tangram-l', (req, res) => {
         if (req.session.usuario != null) {
             let { coloresT } = require('../controller/controller-colors');
-            res.render('tangram-l', { coloresT, titulo: 'Tangram L', msg: req.query.msg, tipo: req.query.tipo });
+            res.render('tangram-l', { coloresT, titulo: 'Tangram L' });
         } else {
             res.redirect('/login');
         }
@@ -21,6 +21,9 @@ module.exports = (app) => {
     });
     app.get('/logout', (req, res) => {
         req.session.usuario = undefined;
-        res.redirect('/');
+        if (req.query.msg && req.query.tipo)
+            res.redirect(`/?msg=${req.query.msg}&tipo=${req.query.tipo}`);
+        else
+            res.redirect('/')
     });
 }

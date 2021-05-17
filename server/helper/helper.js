@@ -45,7 +45,7 @@ hsb.registerHelper('getPaletas', () => {
     let codigohtml = '';
     g.forEach(element => {
         codigohtml += `<div class="card mb-3 text-center shadow border-0" style="max-width: 16rem;" id="cardcolor" onclick="cardClicked('${element[0]}','${element[1]}','${element[2]}','${element[3]}')">
-                                    <div class="card-header bg-secondary" style="color:  ${element[1]};">Colores</div>
+                                    <div class="card-header bg-default" style="color:  white;">Colores</div>
                                     <div class="card-body">
                                         <h5 class="card-title">${element[0]}</h5>
                                         <div style="margin-left: 15%;">

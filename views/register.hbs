@@ -16,6 +16,27 @@
                 <p>Rellene los campos con tu informacion</p>
                 <hr style="width:85%">
             </div>
+
+            <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5 ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                      </div>
+                      <input type="text" placeholder="Cédula" required class="form-control" id = "idcard" name = "idcard">
+                    </div> 
+              </div>
+
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                      </div>
+                      <input type="text" placeholder="Nombre de Usuario" required class="form-control" id = "username" name = "username">
+                    </div> 
+              </div>
+            </div>
+
             <div class="row justify-content-center">
               <div class="form-group mb-3 col-5 ">
                     <div class="input-group input-group-alternative">
@@ -36,7 +57,108 @@
               </div>
             </div>
 
+            
+
             <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5 ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                      </div>
+                      <input type="tel" placeholder="Teléfono Convencional" pattern="[0-9]{10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required class="form-control" id = "telephone" name = "telephone">
+                    </div> 
+              </div>
+
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-mobile"></i></span>
+                      </div>
+                      <input type="text" placeholder="Celular" pattern="[0-9]{10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required class="form-control" id = "phone" name = "phone">
+                    </div> 
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5 ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i> </span>
+                      </div>
+                      <input type="date" name="birthday" id="birthday" required class="form-control" placeholder="Fecha de Nacimiento">
+                    </div> 
+              </div>
+
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-street-view"></i></span>
+                      </div>
+                      <input type="text" placeholder="Direccion" required class="form-control" id = "direction" name = "direction">
+                    </div> 
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5 ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-map"></i></span>
+                      </div>
+                      <input type="text" placeholder="Pais" required class="form-control" id = "country" name = "country">
+                    </div> 
+              </div>
+
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                      </div>
+                      <input type="text" placeholder="Provincia" required class="form-control" id = "province" name = "province">
+                    </div> 
+              </div>
+            </div>
+
+            <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5 ">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-map-marker"></i></span>
+                      </div>
+                      <input type="text" placeholder="Ciudad" required class="form-control" id = "city" name = "city">
+                    </div> 
+              </div>
+
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-heart"></i></span>
+                      </div>
+                      <select name="civilstatus" id="civilstatus" class="form-control">  
+                        <option value="#" disabled selected>-- Estado Civil --</option>
+                        <option value="Soltero/a">Soltero/a</option>
+                        <option value="Casado/a">Casado/a</option>
+                        <option value="Divorciado/a">Divorciado/a</option>
+                        <option value="Viudo/a">Viudo/a</option>
+                      </select>
+                    </div> 
+              </div>
+            </div>
+
+
+            <div class="row justify-content-center">
+              <div class="form-group mb-3 col-5">
+                    <div class="input-group input-group-alternative">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                      </div>
+                      <select name="gender" id="gender" class="form-control">
+                        <option value="#" disabled selected>-- Género --</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                      </select>
+                    </div> 
+              </div>
               <div class="form-group mb-3 col-5 ">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
@@ -45,7 +167,9 @@
                     <input type="email" placeholder="Email" required class="form-control" id = "email" name = "email"><br>
                     </div> 
               </div>
-                
+            </div>
+
+            <div class="row justify-content-center">                
               <div class="form-group mb-3 col-5">
                     <div class="input-group input-group-alternative">
                       <div class="input-group-prepend">
@@ -97,11 +221,15 @@
             </div>
               
             <div class="row">
-              <div id="tablero" class="col-9">
+              <div id="tablero" class="col-6">
                       
               </div>
-          
-              <div class="col text-center mt-3">
+              <div class="col" style="margin-left: -20px;">
+                <h4 class="mb-0"><strong>Reglas</strong></h4><br>
+                <p class="mb-0">1. Utilizar todos los colores de la paleta</p><br>
+                <p id ="rule" class="mb-0"></p><br>
+              </div>
+              <div class="col text-center">
                 <div class="card mb-3 shadow border-0 ml-4" style="max-width: 10rem;">
                           <div class="card-header bg-default" style="color: white;">Colores</div>
                           <div class="card-body" id="cc">
@@ -138,6 +266,28 @@
         display: none;
       }
     </style>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Recordatorio Tangram</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <script src="assets/js/script.js"></script>
     

@@ -4,6 +4,7 @@ const _ = require('underscore');
 const Tangram = require('../model/tangram');
 
 const app = express();
+const { getRules } = require('../controller/controller-rules');
 
 
 
@@ -22,6 +23,7 @@ app.get('/tangram', (req, res) => {
         res.json({
             ok: true,
             tangram,
+            rule: getRules()
         });
 
     })
