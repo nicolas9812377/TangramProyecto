@@ -187,6 +187,7 @@ function cardClicked(n, ca, cb, cc) {
     let colorb = cb;
     let colorc = cc;
     let nombre = n;
+    paletacolor = [];
     paletacolor.push([ca], [cb], [cc]);
     $('#cs').attr('disabled', false);
     $('.alert-primary').removeClass('d-none').html(`Color Elegido: ${nombre}`);
