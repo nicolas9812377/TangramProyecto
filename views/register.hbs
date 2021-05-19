@@ -23,7 +23,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-id-card"></i></span>
                       </div>
-                      <input type="text" placeholder="Cédula" required class="form-control" id = "idcard" name = "idcard">
+                      <input type="text" placeholder="Cédula" pattern="[0-9]{10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required class="form-control" id = "idcard" name = "idcard">
                     </div> 
               </div>
 
