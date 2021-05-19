@@ -43,7 +43,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
-                      <input type="text" placeholder="Nombre" required class="form-control" id = "name" name = "name">
+                      <input type="text" placeholder="Nombre" pattern="[0-9]{10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required class="form-control" id = "name" name = "name">
                     </div> 
               </div>
 
@@ -52,7 +52,7 @@
                       <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-user"></i></span>
                       </div>
-                      <input type="text" placeholder="Apellido" required class="form-control" id = "lastname" name = "lastname">
+                      <input type="text" placeholder="Apellido" pattern="[0-9]{10}" onkeypress='return event.charCode >= 48 && event.charCode <= 57' required class="form-control" id = "lastname" name = "lastname">
                     </div> 
               </div>
             </div>
